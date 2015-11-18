@@ -1,11 +1,28 @@
+h1 {
+	line-height: 1;
+}
+
+a {
+	text-decoration: none;
+	@extend .transition;
+	
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
 .my-content {
 	margin: 0 auto 60px;
+	width: 800px;
+	max-width: 100%;
+	min-height: 400px;
 	
 	@media #{$phone}, #{$tablet}{
 		margin: 15px;
 	}
 }
 
+// Layout fix for MDL footer columns
 .mdl-mega-footer__drop-down-section {
 	@media screen and (min-width: 760px) {
 		width: 25%;

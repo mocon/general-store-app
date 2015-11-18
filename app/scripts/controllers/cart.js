@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name generalStoreApp.controller:AboutCtrl
+ * @name generalStoreApp.controller:CartCtrl
  * @description
- * # AboutCtrl
+ * # CartCtrl
  * Controller of the generalStoreApp
  */
 angular.module('generalStoreApp')
-  .controller('AboutCtrl', function () {
+  .controller('CartCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

@@ -6,3 +6,12 @@ $acc-color: #ff4081;
 $phone: "(max-width:479px)";
 $tablet: "(max-width: 839px) and (min-width: 480px)";
 $desktop: "(min-width:840px)";
+
+// Extendable classes
+.transition {
+	-webkit-transition: all 250ms ease-in-out;
+	-moz-transition: all 250ms ease-in-out;
+	-ms-transition: all 250ms ease-in-out;
+	-o-transition: all 250ms ease-in-out;
+	transition: all 250ms ease-in-out;
+}
