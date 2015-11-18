@@ -13,7 +13,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'viewhead'
   ])
   .config(function ($routeProvider) {
     $routeProvider
