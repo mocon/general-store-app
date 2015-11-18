@@ -8,10 +8,12 @@
  * Controller of the generalStoreApp
  */
 angular.module('generalStoreApp')
-  .controller('ShopCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('ShopCtrl', function ($scope, ProductsService) {
+    
+    var productsPromise = ProductsService.getAllProducts();
+    
+    productsPromise.then(function(response){
+	    $scope.allProducts = response.data.products;
+    });
+    
   });
