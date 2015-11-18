@@ -29,7 +29,7 @@
           <nav class="mdl-navigation mdl-layout--large-screen-only">
 	          <a class="mdl-navigation__link" href="#/">Home</a>
             <a class="mdl-navigation__link" href="#/shop">Shop</a>
-            <a class="mdl-navigation__link" href="#/cart">Cart</a>
+            <a class="mdl-navigation__link" href="#/cart"><span ng-if="numberOfItemsInCart > 0" class="mdl-badge" data-badge="{{numberOfItemsInCart}}">Cart</span><span ng-if="numberOfItemsInCart == 0">Cart</span></a>
           </nav>
         </div>
       </header>
@@ -39,7 +39,7 @@
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="#/">Home</a>
           <a class="mdl-navigation__link" href="#/shop">Shop</a>
-          <a class="mdl-navigation__link" href="#/cart">Cart</a>
+          <a class="mdl-navigation__link" href="#/cart"><span ng-if="numberOfItemsInCart > 0" class="mdl-badge" data-badge="{{numberOfItemsInCart}}">Cart</span><span ng-if="numberOfItemsInCart == 0">Cart</span></a>
         </nav>
       </div>
       
@@ -124,6 +124,8 @@
         <script src="scripts/controllers/shop.js"></script>
         <script src="scripts/controllers/cart.js"></script>
         <script src="scripts/services/products.js"></script>
+        <script src="scripts/services/cart.js"></script>
+        <script src="scripts/directives/add-remove.js"></script>
         <script src="scripts/vendor/angularjs-viewhead.js"></script>
         <!-- endbuild -->
 </body>
