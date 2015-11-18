@@ -17,7 +17,6 @@ angular.module('generalStoreApp')
 				method: 'GET',
 				url: 'https://boiling-oasis-4008.herokuapp.com/products'
 			}).then(function successCallback(response) {
-				console.log('Products retrieved successfully.');
 				deferred.resolve(response);
 			}, function errorCallback(response) {
 				console.log('Error code %s while retrieving products.', response.status);
