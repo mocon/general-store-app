@@ -122,6 +122,7 @@ module.exports = function (grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc',
+        ignores: ['app/scripts/vendor/*.js'],
         reporter: require('jshint-stylish')
       },
       all: {
