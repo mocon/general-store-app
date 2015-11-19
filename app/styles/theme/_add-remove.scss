@@ -1,0 +1,13 @@
+.add-remove {
+	float: right;
+	
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+	
+	.add-cart, .remove-cart {
+		min-width: 0;
+	}
+}
