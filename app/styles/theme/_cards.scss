@@ -2,11 +2,11 @@
 	display: inline-block;
 	margin: 0 5px 10px;
 	width: 32%;
-	height: 280px;
+	height: 300px;
 	
 	@media #{$tablet}{
 		width: 47%;
-		height: 300px;
+		height: 320px;
 	}
 	
 	@media #{$phone}{
@@ -21,13 +21,39 @@
 		box-shadow:inset 0 -40px 100px -40px rgba(0,0,0,.8);
 		
 		h2 {
-			text-shadow: 1px 1px 3px rgba(0,0,0,.54);
+			text-shadow: 1px 1px 5px rgba(0,0,0,.54);
 		}
 	}
 	
 	.mdl-card__actions {
 		position: absolute;
 		bottom: 0;
+	}
+	
+	.tags {
+		position: absolute;
+		bottom: 43px;
+		
+		div {
+			display: inline-block;
+			background: #ccc;
+			color: white;
+			padding: 0 5px;
+			margin: 0 5px 5px 0;
+			border-radius: 2px;
+			font-weight: 300;
+		}
+	}
+	
+	.mdl-button:hover {text-decoration: none;}
+	
+	.sold-out {
+		color: $acc-color;
+		
+		&:after {
+			content: "Sold Out!";
+			margin-left: 5px;
+		}
 	}
 }
 
