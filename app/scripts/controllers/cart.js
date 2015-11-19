@@ -8,10 +8,8 @@
  * Controller of the generalStoreApp
  */
 angular.module('generalStoreApp')
-  .controller('CartCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('CartCtrl', function (CartService) {
+    
+    CartService.cartSubtotal();
+    
   });

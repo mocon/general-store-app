@@ -1,0 +1,26 @@
+.cart-items, .cart-total {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	
+	.left {
+		float: left;
+	}
+	
+	.right {
+		float: right;
+	}
+	
+	.clear {
+		display: table;
+		clear: both;
+	}
+	
+	.total {
+		margin: 20px 0;
+		font-weight: 600;
+		font-size: 2em;
+	}
+	
+	small {color: #ccc;}
+}

@@ -1,1 +1,33 @@
 <h1 view-title>My Cart</h1>
+
+<p ng-show="numberOfItemsInCart === 0">You have no items in your cart. Take a look around <a ng-href="#/shop">The Shop</a>!</p>
+
+<div ng-if="numberOfItemsInCart > 0">
+	<ul class="cart-items">
+		<li ng-repeat="product in allProducts" ng-show="product.qtyInCart">
+			<div class="left"><small>{{product.qtyInCart}}x</small> {{product.name}}</div>
+			<div class="right"><small ng-if="product.qtyInCart > 1">({{product.price | currency}} each)</small> {{product.price * product.qtyInCart | currency}}</div>
+			<div class="clear"></div>
+		</li>
+	</ul>
+	
+	<hr>
+	
+	<ul class="cart-total">
+		<li>
+			<div class="left">Subtotal</div>
+			<div class="right">{{subtotal | currency}}</div>
+			<div class="clear"></div>
+		</li>
+		<li>
+			<div class="left">9.5% Tax</div>
+			<div class="right">{{tax | currency}}</div>
+			<div class="clear"></div>
+		</li>
+		<li class="total">
+			<div class="left">Total</div>
+			<div class="right">{{total | currency}}</div>
+			<div class="clear"></div>
+		</li>
+	</ul>
+</div>
