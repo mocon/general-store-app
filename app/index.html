@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body>
+  <body ng-controller="CartCtrl as cart">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -29,7 +29,7 @@
           <nav class="mdl-navigation mdl-layout--large-screen-only">
 	          <a class="mdl-navigation__link" href="#/">Home</a>
             <a class="mdl-navigation__link" href="#/shop">Shop</a>
-            <a class="mdl-navigation__link" href="#/cart"><span ng-class="{ 'mdl-badge': numberOfItemsInCart > 0 }" data-badge="{{numberOfItemsInCart}}">Cart</span></a>
+            <a class="mdl-navigation__link" href="#/cart"><span ng-class="{ 'mdl-badge': cartItems.length > 0 }" data-badge="{{getCartCount()}}">Cart</span></a>
           </nav>
         </div>
       </header>
@@ -39,7 +39,7 @@
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="#/">Home</a>
           <a class="mdl-navigation__link" href="#/shop">Shop</a>
-          <a class="mdl-navigation__link" href="#/cart"><span ng-class="{ 'mdl-badge': numberOfItemsInCart > 0 }" data-badge="{{numberOfItemsInCart}}">Cart</span></a>
+          <a class="mdl-navigation__link" href="#/cart"><span ng-class="{ 'mdl-badge': cartItems.length > 0 }" data-badge="{{getCartCount()}}">Cart</span></a>
         </nav>
       </div>
       
