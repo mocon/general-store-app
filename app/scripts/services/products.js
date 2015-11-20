@@ -8,22 +8,41 @@
  * Service of the generalStoreApp
  */
 angular.module('generalStoreApp')
-  .service('ProductsService', function ($http, $q) {
-    
-	  this.getAllProducts = function(){
-			var deferred = $q.defer();
-			
+  .service('ProductsService', function ($http) {
+	  
+	  var _products = [];
+	  
+		var scope = {};
+		
+		scope.getProducts = function() {
+			return _products;
+		};
+		
+		scope.getAllProducts = function() {
 			$http({
 				method: 'GET',
 				url: 'https://boiling-oasis-4008.herokuapp.com/products'
 			}).then(function successCallback(response) {
-				deferred.resolve(response);
+				_products = response.data.products;
 			}, function errorCallback(response) {
 				console.log('Error code %s while retrieving products.', response.status);
-				deferred.reject(response);
 			});
-			
-			return deferred.promise;
+		};
+	  
+	  scope.qtyAvailable = function(product){
+		  return product.qtyAvailable;
 	  };
+	  
+	  scope.incrementProduct = function(product){
+		  product.qtyAvailable ++;
+	  };
+	  
+	  scope.decrementProduct = function(product){
+		  if (product.qtyAvailable > 0) {
+			  product.qtyAvailable --;
+		  }
+	  };
+	  
+	  return scope;
     
   });
