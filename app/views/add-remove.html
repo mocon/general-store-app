@@ -1,4 +1,4 @@
 <div class="add-remove">
-	<button ng-if="itemInCart" ng-click="removeFromCart()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect remove-cart">-</button>
-	<button ng-if="isAvailable" ng-click="addToCart()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored add-cart">+</button>
+	<button ng-if="isInCart(product)" ng-click="removeFromCart()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect remove-cart">-</button>
+	<button ng-if="product.qtyAvailable > 0" ng-click="addToCart()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored add-cart">+</button>
 </div>
