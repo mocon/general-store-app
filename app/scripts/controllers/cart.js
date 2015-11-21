@@ -8,8 +8,20 @@
  * Controller of the generalStoreApp
  */
 angular.module('generalStoreApp')
-  .controller('CartCtrl', function (CartService) {
+  .controller('CartCtrl', function ($scope, CartService) {
     
-    CartService.cartSubtotal();
+		$scope.$watch(function() {
+			return CartService.getCartItems();
+		}, function(items) {
+			$scope.cartItems = items;
+		});
+		
+	  $scope.getCartCount = CartService.getCartCount;
+	  
+	  $scope.cartSubtotal = CartService.cartSubtotal;
+	  
+	  $scope.taxAmount = CartService.cartTaxAmount;
+	  
+	  $scope.grandTotal = CartService.cartGrandTotal;
     
   });

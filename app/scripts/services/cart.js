@@ -8,36 +8,84 @@
  * Service of the generalStoreApp
  */
 angular.module('generalStoreApp')
-  .service('CartService', function ($rootScope) {
-    $rootScope.numberOfItemsInCart = 0;
+  .service('CartService', function () {
+    var scope = {};
     
-	  this.cartItems = [];
+    // Array of arrays
+    var _cartItems = [];
 	  
-	  this.getCartItems = function(){
-		  return this.cartItems;
+	  scope.getCartItems = function(){
+		  return _cartItems;
 	  };
 	  
-	  this.incrementCartCounter = function(){
-		  $rootScope.numberOfItemsInCart ++;
+	  scope.addProductToCart = function(product) {
+			product.qtyAvailable --;
+		  var productAdded = false;
+			
+			_cartItems = _cartItems.map(function(subItems) {				
+				// If one of this product is already in cart, push subsequent matching ones to sub-array
+				if (subItems[0].name === product.name) {
+					productAdded = true;
+					subItems.push(product);
+					return subItems;
+				}
+				return subItems;
+			});
+			
+			// Otherwise, push this product to the top level array
+			if (!productAdded) {
+				_cartItems.push([product]);
+			}
 	  };
 	  
-	  this.decrementCartCounter = function(){
-		  $rootScope.numberOfItemsInCart --;
+	  scope.removeProductFromCart = function(product) {		  
+		  for (var i in _cartItems) { 
+			  var identicalProducts = _cartItems[i];
+			  if (identicalProducts[0].name === product.name){
+				  identicalProducts.splice(0,1); 
+					if (identicalProducts.length === 0) {
+						_cartItems.splice(i, 1);
+					}
+					
+					product.qtyAvailable ++;
+					
+				  return;
+			  }
+		  }
 	  };
 	  
-	  this.cartSubtotal = function(){
-	    var itemsInCart = $rootScope.allProducts,	    
-	    		i,
-	    		runningTotal = 0;
-	    		
-	    for (i in itemsInCart){
-		    if (itemsInCart[i].hasOwnProperty('qtyInCart')) {
-			    runningTotal += itemsInCart[i].qtyInCart * itemsInCart[i].price;
-		    }
-	    }
-	    $rootScope.subtotal = runningTotal;
-	    $rootScope.tax = $rootScope.subtotal * 0.095;
-	    $rootScope.total = $rootScope.subtotal + $rootScope.tax;
+	  scope.getCartCount = function() {
+		  return _cartItems.reduce(function(prev, products) {
+			  return prev + products.length;
+		  }, 0);
+	  };
+	  
+	  scope.isInCart = function(product) {
+		  return _cartItems.filter(function(products) {
+				return (products[0].name === product.name);
+		  }).length;
+	  };
+	  
+	  scope.cartSubtotal = function(){
+	    return _cartItems.reduce(function(prev, products) {
+			  return prev + (products.length * products[0].price);
+		  }, 0);
     };
+    
+    scope.cartTaxAmount = function(){
+	    var subtotalAmount = scope.cartSubtotal(),
+	    			taxRate = 0.095;
+	    
+	    return subtotalAmount * taxRate;
+    };
+    
+    scope.cartGrandTotal = function(){
+	    var subtotalAmount = scope.cartSubtotal(),
+	    			taxAmount = scope.cartTaxAmount();
+	    			
+	    	return subtotalAmount + taxAmount;
+    };
+    
+    return scope;
     
   });
