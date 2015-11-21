@@ -10,10 +10,11 @@
 angular.module('generalStoreApp')
   .controller('ShopCtrl', function ($scope, ProductsService) {
     
-    var productsPromise = ProductsService.getAllProducts();
-    
-    productsPromise.then(function(response){
-	    $scope.allProducts = response.data.products;
-    });
+    $scope.$watch(function() {
+			return ProductsService.getProducts();
+		}, function(products) {
+			$scope.allProducts = products;
+		});
+		ProductsService.getAllProducts();
     
   });
