@@ -3,6 +3,14 @@
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.14.0.
 
+## Installation
+
+```shell
+cd general-store-app
+npm install && bower install
+grunt serve
+```
+
 ## Build & development
 
 Run `grunt` for building and `grunt serve` for preview.
