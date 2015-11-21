@@ -15,6 +15,7 @@ angular.module('generalStoreApp')
 		}, function(products) {
 			$scope.allProducts = products;
 		});
+		
 		ProductsService.getAllProducts();
     
   });

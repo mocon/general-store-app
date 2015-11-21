@@ -19,14 +19,16 @@ angular.module('generalStoreApp')
 		};
 		
 		scope.getAllProducts = function() {
-			$http({
-				method: 'GET',
-				url: 'https://boiling-oasis-4008.herokuapp.com/products'
-			}).then(function successCallback(response) {
-				_products = response.data.products;
-			}, function errorCallback(response) {
-				console.log('Error code %s while retrieving products.', response.status);
-			});
+			if (!_products.length) {
+				$http({
+					method: 'GET',
+					url: 'https://boiling-oasis-4008.herokuapp.com/products'
+				}).then(function successCallback(response) {
+					_products = response.data.products;
+				}, function errorCallback(response) {
+					console.log('Error code %s while retrieving products.', response.status);
+				});
+			}
 		};
 	  
 	  scope.qtyAvailable = function(product){
@@ -34,12 +36,18 @@ angular.module('generalStoreApp')
 	  };
 	  
 	  scope.incrementProduct = function(product){
-		  product.qtyAvailable ++;
+		  for (var i in _products) {
+			  if (_products[i].name === product.name){
+				  _products[i].qtyAvailable ++;
+			  }
+		  }
 	  };
 	  
 	  scope.decrementProduct = function(product){
-		  if (product.qtyAvailable > 0) {
-			  product.qtyAvailable --;
+		  for (var i in _products) {
+			  if (_products[i].name === product.name && _products[i].qtyAvailable > 0){
+				  _products[i].qtyAvailable --;
+			  }
 		  }
 	  };
 	  

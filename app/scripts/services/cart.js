@@ -19,8 +19,7 @@ angular.module('generalStoreApp')
 	  };
 	  
 	  scope.addProductToCart = function(product) {
-			product.qtyAvailable --;
-		  var productAdded = false;
+			var productAdded = false;
 			
 			_cartItems = _cartItems.map(function(subItems) {				
 				// If one of this product is already in cart, push subsequent matching ones to sub-array
@@ -46,9 +45,6 @@ angular.module('generalStoreApp')
 					if (identicalProducts.length === 0) {
 						_cartItems.splice(i, 1);
 					}
-					
-					product.qtyAvailable ++;
-					
 				  return;
 			  }
 		  }

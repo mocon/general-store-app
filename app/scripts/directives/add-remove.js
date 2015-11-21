@@ -8,7 +8,7 @@
  * Directive of the generalStoreApp
  */
 angular.module('generalStoreApp')
-  .directive('addRemove', function (CartService) {
+  .directive('addRemove', function (CartService, ProductsService) {
     return {
 	    restrict: 'E',
 	    scope: {
@@ -20,10 +20,12 @@ angular.module('generalStoreApp')
 		  
 		    scope.addToCart = function(){
 					CartService.addProductToCart(scope.product);
+					ProductsService.decrementProduct(scope.product);
 		    };
 		    
 		    scope.removeFromCart = function(){
 					CartService.removeProductFromCart(scope.product);
+					ProductsService.incrementProduct(scope.product);
 		    };
 		    
 		    	scope.isInCart = CartService.isInCart;
