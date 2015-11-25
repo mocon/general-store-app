@@ -10,10 +10,13 @@
 angular.module('generalStoreApp')
   .controller('ShopCtrl', function ($scope, ProductsService) {
     
+    // vm = viewmodel
+    var vm = this;
+    
     $scope.$watch(function() {
 			return ProductsService.getProducts();
 		}, function(products) {
-			$scope.allProducts = products;
+			vm.allProducts = products;
 		});
 		
 		ProductsService.getAllProducts();
