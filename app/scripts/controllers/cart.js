@@ -10,18 +10,21 @@
 angular.module('generalStoreApp')
   .controller('CartCtrl', function ($scope, CartService) {
     
+    // vm = viewmodel
+    var vm = this;
+    
 		$scope.$watch(function() {
 			return CartService.getCartItems();
 		}, function(items) {
-			$scope.cartItems = items;
+			vm.cartItems = items;
 		});
 		
-	  $scope.getCartCount = CartService.getCartCount;
+	  vm.getCartCount = CartService.getCartCount;
 	  
-	  $scope.cartSubtotal = CartService.cartSubtotal;
+	  vm.cartSubtotal = CartService.cartSubtotal;
 	  
-	  $scope.taxAmount = CartService.cartTaxAmount;
+	  vm.taxAmount = CartService.cartTaxAmount;
 	  
-	  $scope.grandTotal = CartService.cartGrandTotal;
+	  vm.grandTotal = CartService.cartGrandTotal;
     
   });

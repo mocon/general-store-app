@@ -1,10 +1,10 @@
 <h1 view-title>My Cart</h1>
 
-<p ng-show="cartItems.length === 0">You have no items in your cart. Take a look around <a ng-href="#/shop">The Shop</a>!</p>
+<p ng-show="cart.cartItems.length === 0">You have no items in your cart. Take a look around <a ng-href="#/shop">The Shop</a>!</p>
 
-<div ng-if="cartItems.length > 0">
+<div ng-if="cart.cartItems.length > 0">
 	<ul class="cart-items">
-		<li ng-repeat="products in cartItems">
+		<li ng-repeat="products in cart.cartItems">
 			<div class="left"><small>{{products.length}}x</small> {{products[0].name}}</div>
 			<div class="right"><small ng-if="products.length > 1">({{products[0].price | currency}} each)</small> {{products[0].price * products.length | currency}}</div>
 			<div class="clear"></div>
@@ -16,17 +16,17 @@
 	<ul class="cart-total">
 		<li>
 			<div class="left">Subtotal</div>
-			<div class="right">{{cartSubtotal() | currency}}</div>
+			<div class="right">{{cart.cartSubtotal() | currency}}</div>
 			<div class="clear"></div>
 		</li>
 		<li>
 			<div class="left">9.5% Tax</div>
-			<div class="right">{{taxAmount() | currency}}</div>
+			<div class="right">{{cart.taxAmount() | currency}}</div>
 			<div class="clear"></div>
 		</li>
 		<li class="total">
 			<div class="left">Total</div>
-			<div class="right">{{grandTotal() | currency}}</div>
+			<div class="right">{{cart.grandTotal() | currency}}</div>
 			<div class="clear"></div>
 		</li>
 	</ul>

@@ -29,7 +29,7 @@
           <nav class="mdl-navigation mdl-layout--large-screen-only">
 	          <a class="mdl-navigation__link" href="#/">Home</a>
             <a class="mdl-navigation__link" href="#/shop">Shop</a>
-            <a class="mdl-navigation__link" href="#/cart"><span ng-class="{ 'mdl-badge': cartItems.length > 0 }" data-badge="{{getCartCount()}}">Cart</span></a>
+            <a class="mdl-navigation__link" href="#/cart"><span ng-class="{ 'mdl-badge': cart.cartItems.length > 0 }" data-badge="{{cart.getCartCount()}}">Cart</span></a>
           </nav>
         </div>
       </header>
@@ -39,7 +39,7 @@
         <nav class="mdl-navigation">
           <a class="mdl-navigation__link" href="#/">Home</a>
           <a class="mdl-navigation__link" href="#/shop">Shop</a>
-          <a class="mdl-navigation__link" href="#/cart"><span ng-class="{ 'mdl-badge': cartItems.length > 0 }" data-badge="{{getCartCount()}}">Cart</span></a>
+          <a class="mdl-navigation__link" href="#/cart"><span ng-class="{ 'mdl-badge': cart.cartItems.length > 0 }" data-badge="{{cart.getCartCount()}}">Cart</span></a>
         </nav>
       </div>
       
