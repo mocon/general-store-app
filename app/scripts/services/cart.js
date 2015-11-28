@@ -8,11 +8,41 @@
  * Service of the generalStoreApp
  */
 angular.module('generalStoreApp')
-  .service('CartService', function () {
+  .service('CartService', function ($rootScope) {
     var scope = {};
     
     // Array of arrays
     var _cartItems = [];
+	  
+	  // Two or more items with the same tag
+    // are eligible for a 10% discount
+    var _discountedItems = [];
+
+    function _updateDiscountedItems() {
+      var products = _cartItems.map(function(products) {
+        return products[0];
+      });
+
+      var tagMatches = [];
+      _discountedItems = products.filter(function(product) {
+        var productAdded = false;
+        for (var tag in product.tags) {
+          if (tagMatches.indexOf(tag) >= 0) {
+            productAdded = true;
+          } else {
+            tagMatches.push(tag);
+          }
+        }
+
+        return productAdded;
+      });
+    }
+
+    $rootScope.$watch(function() {
+      return _cartItems;
+    }, function() {
+      _updateDiscountedItems();
+    });
 	  
 	  scope.getCartItems = function(){
 		  return _cartItems;
@@ -64,7 +94,9 @@ angular.module('generalStoreApp')
 	  
 	  scope.cartSubtotal = function(){
 	    return _cartItems.reduce(function(prev, products) {
-			  return prev + (products.length * products[0].price);
+			  var product = products[0];
+        var discount = _discountedItems.indexOf(product) >= 0 ? 0.90 : 1;
+        return prev + (products.length * (products[0].price * discount));
 		  }, 0);
     };
     
@@ -85,3 +117,4 @@ angular.module('generalStoreApp')
     return scope;
     
   });
+  
